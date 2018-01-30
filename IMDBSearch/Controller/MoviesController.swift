@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import Foundation
 
 class MoviesController: UIViewController {
 
@@ -19,13 +20,15 @@ class MoviesController: UIViewController {
     
     
     var movies = [Movie]()
-    //var filteredMovies = [Movie]()
+   
     
     var movie: Movie!
-    //var inSearchMode = false
+    var movieId: Int!
     var queryText = ""
     
+    var names = [Int]()
   
+    
     // MARK: - VC lifecycle
     
     override func viewDidLoad() {
@@ -38,13 +41,14 @@ class MoviesController: UIViewController {
         searchBar.delegate = self
         
         tableView.isHidden = true
-        
+       // self.movieId = 0
+    
     }
     
- 
+    // MARK: - API call
     
     func downloadFilmDetails (completed: @escaping DownloadCompleted) {
-        Alamofire.request("\(BASE_URL)\(API_KEY)\(QUERY)\(self.queryText)").responseJSON { response in
+        Alamofire.request("\(BASE_URL_FOR_SEARCH)\(API_KEY)\(QUERY)\(self.queryText)").responseJSON { response in
             let result = response.result
             if let dict = result.value as? Dictionary<String, AnyObject> {
                 if let results = dict["results"] as? [Dictionary <String, AnyObject>] {
@@ -67,26 +71,46 @@ class MoviesController: UIViewController {
        
     }
     
+
+
+
+// MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toDetail" {
+            if let detaiVC = segue.destination as? DetailMovieController {
+                
+                
+                names = movies.map{$0.movieId }
+                //detaiVC.movieId = names
+            }
+            
+        }
+    }
 }
+
+
+
+
+
 
 extension MoviesController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return movies.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieCell {
-            
+        
             let movie : Movie!
-
-           
-             
             movie = movies[indexPath.row]
             
             cell.configureCell(movie)
+           
+            self.movieId = movie.movieId;
             return cell
         }else{
             return MovieCell()
@@ -108,6 +132,9 @@ extension MoviesController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+
+
 
 extension MoviesController: UISearchBarDelegate {
     
@@ -151,6 +178,7 @@ extension MoviesController: UISearchBarDelegate {
             self.movies.removeAll()
      
             
+        
         }
         
         

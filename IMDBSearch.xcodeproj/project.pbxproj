@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		62A1D6989B4FC61740AF36BA /* Pods_IMDBSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9E66334BF11701BF2510A9 /* Pods_IMDBSearch.framework */; };
+		C6449357202073E1005EF4EA /* DetailMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6449356202073E1005EF4EA /* DetailMovieController.swift */; };
+		C644935920207421005EF4EA /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C644935820207421005EF4EA /* DetailCell.swift */; };
+		C693174A202086A8000BD3E0 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6931749202086A8000BD3E0 /* MovieDetails.swift */; };
 		C6ED0D49201DD489003D7417 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ED0D48201DD489003D7417 /* AppDelegate.swift */; };
 		C6ED0D4B201DD489003D7417 /* MoviesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ED0D4A201DD489003D7417 /* MoviesController.swift */; };
 		C6ED0D4E201DD489003D7417 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6ED0D4C201DD489003D7417 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		6BFD2BD4BF4F778BA9EBC367 /* Pods-IMDBSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDBSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMDBSearch/Pods-IMDBSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		AF9E66334BF11701BF2510A9 /* Pods_IMDBSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMDBSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6449356202073E1005EF4EA /* DetailMovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieController.swift; sourceTree = "<group>"; };
+		C644935820207421005EF4EA /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		C6931749202086A8000BD3E0 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		C6ED0D45201DD489003D7417 /* IMDBSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMDBSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ED0D48201DD489003D7417 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6ED0D4A201DD489003D7417 /* MoviesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				C6ED0D5B201DD515003D7417 /* Movie.swift */,
+				C6931749202086A8000BD3E0 /* MovieDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C6ED0D4A201DD489003D7417 /* MoviesController.swift */,
+				C6449356202073E1005EF4EA /* DetailMovieController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -117,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				C6ED0D61201DF880003D7417 /* MovieCell.swift */,
+				C644935820207421005EF4EA /* DetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,9 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6ED0D4B201DD489003D7417 /* MoviesController.swift in Sources */,
+				C6449357202073E1005EF4EA /* DetailMovieController.swift in Sources */,
 				C6ED0D49201DD489003D7417 /* AppDelegate.swift in Sources */,
+				C693174A202086A8000BD3E0 /* MovieDetails.swift in Sources */,
 				C6ED0D5C201DD515003D7417 /* Movie.swift in Sources */,
 				C6ED0D62201DF880003D7417 /* MovieCell.swift in Sources */,
+				C644935920207421005EF4EA /* DetailCell.swift in Sources */,
 				C6ED0D60201DDDCB003D7417 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

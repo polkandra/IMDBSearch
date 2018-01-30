@@ -16,9 +16,10 @@ class Movie {
     var _voteRating: Double!
     var _plot: String!
     var _posterURL: String!
-   
+    var _movieId: Int!
     
-   
+    
+    
     var title: String {
         
         if _title == nil {
@@ -51,9 +52,16 @@ class Movie {
     }
 
     
+    var movieId: Int {
+        if _movieId == nil {
+            _movieId = 0
+        }
+        return _movieId
+    }
     
-    
+   
     init(filmsDict: Dictionary<String, AnyObject>) {
+      
         
         if let title = filmsDict["original_title"] as? String {
             self._title = title.capitalized
@@ -74,15 +82,20 @@ class Movie {
             print(self._posterURL)
         }
         
+        if let id = filmsDict["id"] as? Int {
+            self._movieId = id
+            print(self._movieId)
+        }
+    
     }
     
     
-   // }
+  
     
     
     
-
-    
+    // }
+  
 //    func downloadFilmDetails (completed :@escaping DownloadCompleted) {
 //        Alamofire.request(FULL_REQUEST).responseJSON { response in
 //            let result = response.result
