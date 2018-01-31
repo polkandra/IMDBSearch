@@ -17,46 +17,80 @@ class DetailMovieController: UITableViewController {
     @IBOutlet weak var staticCell: DetailCell!
     //@IBOutlet weak var tableView: UITableView!
     
-    var movieId: Int!
-    var movie: MovieDetails!
     
-
+    var requestURL = ""
+    var movieId = 0
+    var movie: Movie!
+    var movieDetails: MovieDetails!
+    
+   
+    
+    
+    // MARK: - VC lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        movieId = movie.movieId
+        self.requestURL = "\(BASE_URL_FOR_DETAILS)\(self.movieId)\(API_KEY_FOR_DETAILS)"
+       
         self.downloadFilmDetails {
-           
+
+            self.navigationItem.title = self.movie.title
         }
-//        staticCell.configureCell(movie)
-        
-   
+
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+    }
+   
+    
     // MARK: - API call
     
+//    func downloadFilmDetails (completed: @escaping DownloadCompleted) {
+//        Alamofire.request(requestURL).responseJSON { response in
+//            let result = response.result
+//            if let dict = result.value as? Dictionary<String, AnyObject> {
+//
+//                let movie = MovieDetails(filmDetailsDict: dict)
+//
+//                 self.staticCell.configureCell(movie)
+//            }
+//            completed()
+//        }
+//    }
+
+    
+
     func downloadFilmDetails (completed: @escaping DownloadCompleted) {
-        Alamofire.request("\(BASE_URL_FOR_DETAILS)\(self.movieId)\(API_KEY_FOR_DETAILS)").responseJSON { response in
+        Alamofire.request(requestURL).responseJSON { response in
             let result = response.result
             if let dict = result.value as? Dictionary<String, AnyObject> {
                 
                 let movie = MovieDetails(filmDetailsDict: dict)
                 
                 self.staticCell.configureCell(movie)
-                
-                
             }
             completed()
         }
     }
 
+   
     
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // MARK: - Actions
 
     @IBAction func shareTapped(_ sender: UIBarButtonItem) {

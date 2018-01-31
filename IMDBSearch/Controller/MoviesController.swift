@@ -26,7 +26,7 @@ class MoviesController: UIViewController {
     var movieId: Int!
     var queryText = ""
     
-    var names = [Int]()
+    var selectedMovie: Movie?
   
     
     // MARK: - VC lifecycle
@@ -82,8 +82,11 @@ class MoviesController: UIViewController {
             if let detaiVC = segue.destination as? DetailMovieController {
                 
                 
-                names = movies.map{$0.movieId }
-                //detaiVC.movieId = names
+                //names = movies.map{$0.movieId }
+              
+                
+                detaiVC.movie = selectedMovie
+           
             }
             
         }
@@ -110,7 +113,7 @@ extension MoviesController: UITableViewDelegate, UITableViewDataSource {
             
             cell.configureCell(movie)
            
-            self.movieId = movie.movieId;
+           // self.movieId = movie.movieId;
             return cell
         }else{
             return MovieCell()
@@ -129,6 +132,13 @@ extension MoviesController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedMovie = movies[indexPath.row]
+        performSegue(withIdentifier: "toDetail", sender: self)
     }
     
 }

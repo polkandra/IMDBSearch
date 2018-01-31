@@ -89,7 +89,7 @@ class MovieDetails {
     }
     
     
-    var date:String {
+    var date: String {
         if _date == nil {
             _date = ""
         }
@@ -143,48 +143,66 @@ class MovieDetails {
     
    
         if let genres = filmDetailsDict["genres"] as? [Dictionary<String, AnyObject>] {
+                    
+            let intendedIndex0 = 0
+            if (intendedIndex0 >= 0 && genres.count > intendedIndex0) {
+                // This line will not throw index out of range:
+                let existingIndex = genres[intendedIndex0]["name"]
+                if let genre1 = existingIndex as? String {
+                    self._genre1 = genre1
+                    print(self._genre1)
+                }
+                
+            }
             
-            if let genre1 = genres[0]["name"] as? String {
-                self._genre1 = genre1
-                print(self._genre1)
+
+            let intendedIndex1 = 1
+            if (intendedIndex1 > 0 && genres.count > intendedIndex1) {
+                // This line will not throw index out of range:
+                let existingIndex = genres[intendedIndex1]["name"]
+                if let genre2 = existingIndex as? String {
+                    self._genre2 = genre2
+                    print(self._genre2)
+                }
+                
             }
-       
-            if let genre2 = genres[1]["name"] as? String {
-                self._genre2 = genre2
-                print(self._genre2)
+            
+            let intendedIndex2 = 2
+            if (intendedIndex2 > 0 && genres.count > intendedIndex2) {
+                // This line will not throw index out of range:
+                let existingIndex = genres[intendedIndex2]["name"]
+                if let genre3 = existingIndex as? String {
+                    self._genre3 = genre3
+                    print(self._genre3)
+                }
+                
             }
-        
-            if let genre3 = genres[2]["name"] as? String {
-                self._genre3 = genre3
-                print(self._genre3)
-            }
-        
+            
         }
-    
+
+     
     
         if let duration = filmDetailsDict["runtime"] as? Int {
+            //let finalString = "\(duration) min"
             self._duration = duration
             print(self._duration)
         }
     
-        if let date = filmDetailsDict["release_date"] as? Double {
-            let unixConvertedDate = Date(timeIntervalSince1970: date)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .full
-            dateFormatter.timeStyle = .none
-            dateFormatter.dateFormat = "EEEE"
-            let finalDate = dateFormatter.string(from: unixConvertedDate)
-            self._date = finalDate
+        if let date = filmDetailsDict["release_date"] as? String {
+            self._date = date
             print(self._date)
         }
     
         if let countryOfProduction = filmDetailsDict["production_countries"] as? [Dictionary<String, AnyObject>] {
-            
-            if let country = countryOfProduction[0]["name"] as? String {
-                self._country = country
-                print(self._country)
+            let intendedIndex = 0
+            if (intendedIndex >= 0 && countryOfProduction.count > intendedIndex) {
+                // This line will not throw index out of range:
+                let existingIndex = countryOfProduction[intendedIndex]["name"]
+                if let country = existingIndex as? String {
+                    self._country = country
+                    print(self._country)
+                }
             }
-        }
     
         if let rating = filmDetailsDict["popularity"] as? Double {
             self._rating = rating
@@ -193,18 +211,27 @@ class MovieDetails {
     
     
         if let production = filmDetailsDict["production_companies"] as? [Dictionary<String, AnyObject>] {
-            if let productionCompany = production[0]["name"] as? String {
-                self._production = productionCompany
-                print(self._production)
-            }
+            let intendedIndex = 0
+            if (intendedIndex >= 0 && production.count > intendedIndex) {
+                // This line will not throw index out of range:
+                let existingIndex = production[intendedIndex]["name"]
+                if let production = existingIndex as? String {
+                    self._production = production
+                    print(self._country)
+                }
         }
        
         
         if let languageArray = filmDetailsDict["spoken_languages"] as? [Dictionary<String, AnyObject>] {
-            if let language = languageArray[0]["name"] as? String {
-                self._language = language
-                print(self._language)
-            }
+            let intendedIndex = 0
+            if (intendedIndex >= 0 && languageArray.count > intendedIndex) {
+                // This line will not throw index out of range:
+                let existingIndex = languageArray[intendedIndex]["name"]
+                if let language = existingIndex as? String {
+                    self._language = language
+                    print(self._language)
+                }
+   
         }
         
         if let desc = filmDetailsDict["overview"] as? String {
@@ -232,10 +259,17 @@ class MovieDetails {
 //        }
         
       
-    
-    
-    
+            
+            
+            
+            }
+            
+            
+            }
+        }
     }
-
-
 }
+
+
+
+
